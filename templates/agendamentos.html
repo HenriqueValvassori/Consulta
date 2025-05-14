@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamentos Realizados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Agendamentos Realizados</h1>
+    {% if agendamentos %}
+        <table>
+            <tr><th>ID</th><th>Procedimento</th><th>Data</th><th>Horário</th></tr>
+            {% for a in agendamentos %}
+                <tr>
+                    <td>{{ a[0] }}</td>
+                    <td>{{ a[1] }}</td>
+                    <td>{{ a[2] }}</td>
+                    <td>{{ a[3] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nenhum agendamento encontrado.</p>
+    {% endif %}
+    <a href="{{ url_for('agendamento') }}">Voltar</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamento de Consulta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Agendamento de Consulta</h1>
+    {% if mensagem %}
+        <p class="mensagem">{{ mensagem }}</p>
+    {% endif %}
+    <form method="POST">
+        <label for="tipo_procedimento">Tipo de Procedimento:</label>
+        <select name="tipo_procedimento" required>
+            <option value="harmonizacao_facial">Harmonização Facial</option>
+            <option value="preenchimento">Preenchimento</option>
+            <option value="botox">Botox</option>
+            <option value="bioestimulacao_colageno">Bioestimulação de Colágeno</option>
+        </select>
+        <label for="data">Data:</label>
+        <input type="date" name="data" required>
+        <label for="horario">Horário:</label>
+        <select name="horario" required>
+            {% for hora in range(9, 21) %}
+                <option value="{{ "{:02d}:00".format(hora) }}">{{ "{:02d}:00".format(hora) }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Agendar</button>
+    </form>
+</body>
+</html>
